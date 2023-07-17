@@ -16,9 +16,13 @@ const positions = new mongoose.Schema({
     barcode:{
         type:String
     },
-    
+    categories:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"categories",
+        require: true,
+    }
 
+})
 
-});
+module.exports = mongoose.model('positions', positions);
 
-module.exports = mongoose.model('position', positions);
