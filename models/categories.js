@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const categories = new mongoose.Schema({
     categories:{
-        type:String,
-        minlenght:2,
-        maxlenght: 50,
+        type: String,
+        minlength: 2,
+        maxlength: 20,
+        required: true,
     }
 })
 
-module.exports = mongoose.Schema('categories',categories);
+module.exports = mongoose.model('categories',categories);

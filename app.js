@@ -5,6 +5,8 @@ const app = express();
 
 //Роуты
 const routerAdmin = require('./routers/admin');
+const routeCategories = require('./routers/categories');
+//const routerPosition = require('./routers/positions');
 
 const {PORT = 3000} = process.env;
 
@@ -16,6 +18,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/', routerAdmin);
+app.use('/', routeCategories);
+//app.use('/', routerPosition);
 
 
 
