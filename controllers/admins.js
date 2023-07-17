@@ -8,7 +8,6 @@ module.exports.createAdmin = (req, res) => {
         .then((admin) => {
             res.status(200)
                 .send({ data: admin })
-
         })
         .catch((err) => {
             res.status(400)
