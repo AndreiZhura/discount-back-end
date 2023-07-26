@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const positions = new mongoose.Schema({
+    name:{
+     type:String
+    },
     image:{
         type:String,
     },
