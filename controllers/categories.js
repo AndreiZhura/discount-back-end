@@ -12,3 +12,13 @@ module.exports.createCategories = (req,res) =>{
          res.status(400).send({message:error})
     })
 }
+
+module.exports.getCategories = (req, res) => {
+    Categories.find({})
+        .then((categories) => {
+            res.status(200).send({ data: categories })
+        })
+        .catch((error) => {
+            res.status(400).send({ message: error });
+        })
+};

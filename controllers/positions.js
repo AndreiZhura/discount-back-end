@@ -16,7 +16,7 @@ module.exports.createPositions = (req, res) => {
 
 module.exports.getPositions = (req, res) => {
     Position.find({})
-        .populate('categories')
+        .populate('category')
         .then((position) => {
             res.status(200).send({ data: position })
         })

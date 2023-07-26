@@ -19,9 +19,9 @@ const positions = new mongoose.Schema({
     barcode:{
         type:String
     },
-    categories:{
+    category:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:"categories",
+        ref:'categories',
         require: true,
     }
 
