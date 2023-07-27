@@ -4,8 +4,8 @@ const Position = require('../models/positions');
 
 module.exports.createPositions = (req, res) => {
 
-    const {name, image, description, promocode, link, barcode, categoriesId } = req.body;
-    Position.create({ name ,image, description, promocode, link, barcode, categories: categoriesId})
+   
+    Position.create({ ...req.body})
         .then((position) => {
             res.status(200).send({ data: position })
         })
@@ -16,7 +16,6 @@ module.exports.createPositions = (req, res) => {
 
 module.exports.getPositions = (req, res) => {
     Position.find({})
-        .populate('category')
         .then((position) => {
             res.status(200).send({ data: position })
         })

@@ -20,9 +20,9 @@ const positions = new mongoose.Schema({
         type:String
     },
     category:{
-        type: mongoose.Schema.Types.ObjectId,
         ref:'categories',
-        require: true,
+        type: mongoose.Schema.Types.ObjectId,
+        require: true
     }
 
 })
