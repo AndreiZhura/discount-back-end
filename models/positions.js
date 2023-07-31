@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+var moment = require('moment');
+
 
 const positions = new mongoose.Schema({
     name:{
@@ -18,6 +20,10 @@ const positions = new mongoose.Schema({
     },
     barcode:{
         type:String
+    },
+    date:{
+        type:Date,
+
     },
     category:{
         ref:'categories',
