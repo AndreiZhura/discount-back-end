@@ -14,16 +14,13 @@ const {PORT = 3001} = process.env;
 
 // подключаем базу данных
 
-mongoose.connect('mongodb://localhost:27017/MyTestBackend');
+mongoose.connect('mongodb://localhost:27017/MyTestBackend')
+.then((res)=> console.log(`База данных подключекнна`))
+.catch((err)=> console.log(err))
+
+
 const options = {
     origin: [
-      'https://api.andreizhura-diplom.nomoredomains.club',
-      'http://api.andreizhura-diplom.nomoredomains.club',
-      'https://andreizhura-diplom.no.nomoredomains.work',
-      'http://andreizhura-diplom.no.nomoredomains.work',
-      'https://localhost:3000',
-      'http://localhost:3000',
-      'https://localhost:3001',
       'https://localhost:10888',
     ],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
@@ -33,7 +30,7 @@ const options = {
     credentials: true,
   };
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors(options));
 app.use('/', routerAdmin);
@@ -44,6 +41,5 @@ app.use('/', routerPosition);
 
 
 app.listen(PORT,() =>{
-    
     console.log(`Сервер запустился на ${PORT} порту`);
 })

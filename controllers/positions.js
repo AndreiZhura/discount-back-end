@@ -1,11 +1,18 @@
-
-const positions = require('../models/positions');
 const Position = require('../models/positions');
 
 module.exports.createPositions = (req, res) => {
 
    
-    Position.create({ ...req.body})
+    Position.create({
+        name: req.body.name,
+        image: req.body.image,
+        description: req.body.description,
+        promocode: req.body.promocode,
+        link: req.body.link,
+        barcode: req.body.barcode,
+        date: req.body.date,
+        category:req.body.category
+    })
         .then((position) => {
             res.status(200).send({ data: position })
         })
@@ -27,7 +34,7 @@ module.exports.getPositions = (req, res) => {
 module.exports.getPositionsId = (req,res) =>{
     Position.findById(req.params._id)
     .then((positions)=>{
-        res.status(200).send({message:positions})
+        res.status(200).send({data:positions})
     })
     .catch((error)=>{
         res.status(400).send({ message: error });
@@ -37,7 +44,7 @@ module.exports.getPositionsId = (req,res) =>{
 module.exports.deletePosition = (req,res) =>{
      Position.findByIdAndDelete(req.params._id)
      .then((positions)=>{
-        res.status(200).send({message:positions})
+        res.status(200).send({data:positions})
     })
     .catch((error)=>{
         res.status(400).send({ message: error });
@@ -48,7 +55,7 @@ module.exports.updatePositionId = (req,res) =>{
     
     Position.findByIdAndUpdate(req.params._id, {...req.body})
     .then((positions)=>{
-        res.status(200).send({message:positions})
+        res.status(200).send({data:positions})
     })
     .catch((error)=>{
         res.status(400).send({ message: error });

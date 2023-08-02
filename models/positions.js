@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 var moment = require('moment');
 
+const date = moment().format('DDMMYYYY-HHmmss');
+
 
 const positions = new mongoose.Schema({
     name:{
-     type:String
+     type:String,
+     required: true,
     },
     image:{
         type:String,
@@ -23,7 +26,7 @@ const positions = new mongoose.Schema({
     },
     date:{
         type:Date,
-
+        default: Date.now(date),
     },
     category:{
         ref:'categories',

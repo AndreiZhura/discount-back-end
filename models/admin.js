@@ -4,20 +4,21 @@ const mongoose = require('mongoose');
 const adminSchema = new mongoose.Schema({
     email: {
         type: String,
-        require: true,
+        required: true,
         minlenght: 2,
         maxlenght: 50,
-
+        unique: true,
     },
     password: {
         type: String,
-        require: true,
+        required: true,
     },
     name: {
         type: String,
         require: true,
         minlenght: 2,
         maxlenght: 50,
+        required: true,
     },
     role: {
         type: String,
