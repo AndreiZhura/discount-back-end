@@ -10,7 +10,7 @@ const positions = new mongoose.Schema({
      required: true,
     },
     image:{
-        type:String,
+        type:Array,
     },
     description:{
         type:String,
@@ -22,7 +22,7 @@ const positions = new mongoose.Schema({
         type:String,
     },
     barcode:{
-        type:String
+        type:Array
     },
     date:{
         type:Date,
