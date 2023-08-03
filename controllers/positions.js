@@ -1,15 +1,17 @@
 const Position = require('../models/positions');
 
 module.exports.createPositions = (req, res) => {
-
+    
+  //const image = req.files.image.map(value =>{return value.path;})
+  //const barcode = req.files.barcode.map(value =>{return value.path;})
 
     Position.create({
         name: req.body.name,
-        image: req.files.image ? req.files.image: 'Такого файла нет',
+        image: req.body.image,
         description: req.body.description,
         promocode: req.body.promocode,
         link: req.body.link,
-        barcode: req.files.barcode ? req.files.barcode: 'Такого файла нет',
+        barcode:  req.body.barcode,
         date: req.body.date,
         category: req.body.category
     })
