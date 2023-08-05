@@ -32,7 +32,7 @@ const options = {
   };
 
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use('/uploads/',express.static(path.join(__dirname, './uploads/')));
+app.use('/uploads/',express.static(path.join(__dirname, './uploads/')));
 
 app.use(bodyParser.json());
 app.use(cors(options));

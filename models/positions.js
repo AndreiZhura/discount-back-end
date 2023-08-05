@@ -5,30 +5,32 @@ const date = moment().format('DDMMYYYY-HHmmss');
 
 
 const positions = new mongoose.Schema({
-    name:{
-     type:String,
-     required: true,
+
+    name: {
+        type: String,
+        required: true,
     },
-    image:{
-        type:Array,
+    image: {
+        type: Array,
     },
-    description:{
-        type:String,
+    description: {
+        type: String,
     },
-    promocode:{
-        type:String
+    promocodeData: [{
+        promocode: String,
+        date: {
+            type: Date,
+            default: Date.now(),
+        },
+    }],
+    link: {
+        type: String,
     },
-    link:{
-        type:String,
+    barcode: {
+        type: Array
     },
-    barcode:{
-        type:Array
-    },
-    date:{
-        type:String,
-    },
-    category:{
-        ref:'categories',
+    category: {
+        ref: 'categories',
         type: mongoose.Schema.Types.ObjectId,
     }
 
