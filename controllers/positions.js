@@ -9,7 +9,6 @@ module.exports.createPositions = (req, res) => {
         name: req.body.name,
         image: req.files.image ? image : 'Такого файла нет',
         description: req.body.description,
-        promocodeData: req.body.promocodeData,
         link: req.body.link,
         barcode: req.files.barcode ? barcode : 'Такого файла нет',
         category: req.body.category
@@ -21,6 +20,7 @@ module.exports.createPositions = (req, res) => {
             res.status(400).send({ message: error });
         })
 };
+
 
 module.exports.getPositions = (req, res) => {
     Position.find({})

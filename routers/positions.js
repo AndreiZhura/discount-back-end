@@ -6,9 +6,7 @@ const imageAndBarcode = upload.fields([{name: 'image', maxCount: 1}, {name: 'bar
 
 positionRouter.get('/positions', getPositions);
 positionRouter.get('/positions/:_id', getPositionsId);
-
 positionRouter.post('/positions',imageAndBarcode, createPositions);
-
 positionRouter.patch('/positions/:_id',  updatePositionId);
 positionRouter.delete('/positions/:_id', deletePosition);
 

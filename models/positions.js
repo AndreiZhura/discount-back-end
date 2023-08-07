@@ -1,7 +1,4 @@
 const mongoose = require('mongoose');
-var moment = require('moment');
-
-const date = moment().format('DDMMYYYY-HHmmss');
 
 
 const positions = new mongoose.Schema({
@@ -16,13 +13,6 @@ const positions = new mongoose.Schema({
     description: {
         type: String,
     },
-    promocodeData: [{
-        promocode: String,
-        date: {
-            type: Date,
-            default: Date.now(),
-        },
-    }],
     link: {
         type: String,
     },
