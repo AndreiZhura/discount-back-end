@@ -3,6 +3,7 @@ const Promocode = require('../models/promocode');
 module.exports.createPromocode = (req, res) => {
     Promocode.create({
         promocode: req.body.promocode,
+        date: req.body.date,
         position: req.body.position
     })
         .then((promocode) => {

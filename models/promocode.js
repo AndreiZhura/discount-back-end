@@ -3,17 +3,17 @@ const mongoose = require('mongoose');
 
 const promocode = new mongoose.Schema({
 
- promocode:{
-    promo,
-    date:{
-        type: Date,
-        default: Date.now(),
+    promocode: {
+        type: String
     },
-    position:{
+    date: {
+        type: Date,
+        default: Date.now()
+    },
+    position: {
         ref: 'positions',
         type: mongoose.Schema.Types.ObjectId,
     }
- }
 
 })
 

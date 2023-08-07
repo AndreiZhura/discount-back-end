@@ -9,6 +9,7 @@ const app = express();
 const routerAdmin = require('./routers/admin');
 const routeCategories = require('./routers/categories');
 const routerPosition = require('./routers/positions');
+const promocodeRouter = require('./routers/promocode')
 const autch = require('./middlewares/autch')
 
 const {PORT = 3001} = process.env;
@@ -40,6 +41,7 @@ app.use('/', routerAdmin);
 //app.use('/',autch);
 app.use('/', routeCategories);
 app.use('/', routerPosition);
+app.use('/', promocodeRouter)
 
 
 
