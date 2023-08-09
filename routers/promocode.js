@@ -6,6 +6,6 @@ const {createPromocode,deletePromocode,getPromocode,getPromocodeId} = require('.
 promocodeRouter.get('/promocode', getPromocode);
 promocodeRouter.get('/promocode/:_id', getPromocodeId);
 promocodeRouter.post('/promocode/',createPromocode);
-promocodeRouter.delete('/promocode/',deletePromocode);
+promocodeRouter.delete('/promocode/:_id',deletePromocode);
 
 module.exports = promocodeRouter;
