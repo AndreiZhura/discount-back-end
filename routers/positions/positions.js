@@ -1,8 +1,8 @@
 const positionRouter = require('express').Router();
 
-const { createPositions,  deletePosition, updatePositionTextId } = require('../controllers/positions');
+const { createPositions,  deletePosition, updatePositionTextId } = require('../../controllers/positions/positions');
 
-const upload = require('../middlewares/upload');
+const upload = require('../../middlewares/upload');
 const imageAndBarcode = upload.fields([{name: 'image', maxCount: 1}, {name: 'barcode', maxCount: 1}]);
 
 positionRouter.post('/positions',imageAndBarcode, createPositions);

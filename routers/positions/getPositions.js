@@ -1,7 +1,7 @@
 
 const getPositionRouter = require('express').Router();
 
-const {getPositions, getPositionsId} = require('../controllers/getPositions')
+const {getPositions, getPositionsId} = require('../../controllers/positions/getPositions')
 
 getPositionRouter.get('/positions', getPositions);
 getPositionRouter.get('/positions/:_id', getPositionsId);

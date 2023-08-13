@@ -1,4 +1,4 @@
-const Promocode = require('../models/promocode');
+const Promocode = require('../../models/promocode');
 
 module.exports.getPromocode = (req, res) => {
     Promocode.find({})

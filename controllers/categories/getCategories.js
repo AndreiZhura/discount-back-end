@@ -1,5 +1,5 @@
 
-const Categories = require('../models/categories');
+const Categories = require('../../models/categories');
 
 module.exports.getCategories = (req, res) => {
     Categories.find({})

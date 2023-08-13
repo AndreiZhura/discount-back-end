@@ -1,6 +1,6 @@
 const promocodeRouter = require('express').Router();
 
-const {createPromocode,deletePromocode} = require('../controllers/promocode')
+const {createPromocode,deletePromocode} = require('../../controllers/promo/promocode')
 
 
 

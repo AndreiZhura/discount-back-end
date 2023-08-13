@@ -1,4 +1,4 @@
-const Position = require('../models/positions');
+const Position = require('../../models/positions');
 
 module.exports.getPositions = (req, res) => {
     Position.find({})
