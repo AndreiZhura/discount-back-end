@@ -6,13 +6,16 @@ const path = require('path')
 const app = express();
 
 //Роуты
-const routerAdmin = require('./routers/auth');
+const routerAuth = require('./routers/auth');
 const routeCategories = require('./routers/categories');
 const routerPosition = require('./routers/positions');
 const promocodeRouter = require('./routers/promocode');
+
+const getAdmin = require('./routers/getAdmin');
 const getRouterCategories = require('./routers/getCategories');
 const getRouterPositions = require('./routers/getPositions');
-const getPromocode = require('./routers/getPromocode')
+const getPromocode = require('./routers/getPromocode');
+
 const autch = require('./middlewares/auth')
 
 const {PORT = 3001} = process.env;
@@ -40,11 +43,12 @@ app.use('/uploads/',express.static(path.join(__dirname, './uploads/')));
 
 app.use(bodyParser.json());
 app.use(cors(options));
-app.use('/', routerAdmin);
+app.use('/', routerAuth);
 app.use('/', getRouterCategories);
 app.use('/', getRouterPositions);
 app.use('/', getPromocode);
 app.use('/',autch);
+app.use('/', getAdmin);
 app.use('/', routeCategories);
 app.use('/', routerPosition);
 app.use('/', promocodeRouter)
