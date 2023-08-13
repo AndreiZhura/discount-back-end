@@ -11,7 +11,7 @@ const getRouterCategories = require('./getCategories');
 const getRouterPositions = require('./getPositions');
 const getPromocode = require('./getPromocode');
 
-const autch = require('./middlewares/auth')
+const autch = require('../middlewares/auth')
 
 
 
