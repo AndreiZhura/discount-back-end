@@ -9,7 +9,9 @@ const app = express();
 const routerAdmin = require('./routers/admin');
 const routeCategories = require('./routers/categories');
 const routerPosition = require('./routers/positions');
-const promocodeRouter = require('./routers/promocode')
+const promocodeRouter = require('./routers/promocode');
+const getRouterCategories = require('./routers/getCategories');
+const getRouterPositions = require('./routers/getPositions');
 const autch = require('./middlewares/autch')
 
 const {PORT = 3001} = process.env;
@@ -38,7 +40,9 @@ app.use('/uploads/',express.static(path.join(__dirname, './uploads/')));
 app.use(bodyParser.json());
 app.use(cors(options));
 app.use('/', routerAdmin);
-//app.use('/',autch);
+app.use('/', getRouterCategories);
+app.use('/', getRouterPositions);
+app.use('/',autch);
 app.use('/', routeCategories);
 app.use('/', routerPosition);
 app.use('/', promocodeRouter)
