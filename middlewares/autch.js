@@ -23,6 +23,8 @@ module.exports = (req, res, next) => {
   }
 
   req.admin = payload; // записываем пейлоуд в объект запроса
+  console.log(1)
+  console.log(payload)
 
   next(); // пропускаем запрос дальше
 }; 
