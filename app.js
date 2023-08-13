@@ -12,6 +12,7 @@ const routerPosition = require('./routers/positions');
 const promocodeRouter = require('./routers/promocode');
 const getRouterCategories = require('./routers/getCategories');
 const getRouterPositions = require('./routers/getPositions');
+const getPromocode = require('./routers/getPromocode')
 const autch = require('./middlewares/autch')
 
 const {PORT = 3001} = process.env;
@@ -42,6 +43,7 @@ app.use(cors(options));
 app.use('/', routerAdmin);
 app.use('/', getRouterCategories);
 app.use('/', getRouterPositions);
+app.use('/', getPromocode);
 app.use('/',autch);
 app.use('/', routeCategories);
 app.use('/', routerPosition);
