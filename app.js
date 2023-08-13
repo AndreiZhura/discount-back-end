@@ -6,14 +6,14 @@ const path = require('path')
 const app = express();
 
 //Роуты
-const routerAdmin = require('./routers/admin');
+const routerAdmin = require('./routers/auth');
 const routeCategories = require('./routers/categories');
 const routerPosition = require('./routers/positions');
 const promocodeRouter = require('./routers/promocode');
 const getRouterCategories = require('./routers/getCategories');
 const getRouterPositions = require('./routers/getPositions');
 const getPromocode = require('./routers/getPromocode')
-const autch = require('./middlewares/autch')
+const autch = require('./middlewares/auth')
 
 const {PORT = 3001} = process.env;
 

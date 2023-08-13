@@ -1,17 +1,24 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const isEmail = require('validator/lib/isEmail');
+const AuthorizationRequired = require('../errors/AuthorizationRequired');
+const { WRONG_EMAIL_OR_PASSWORD } = require('../constants/constants');
+
 
 const adminSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        minlenght: 2,
-        maxlenght: 50,
         unique: true,
+        validate: {
+          validator: (v) => isEmail(v),
+          message: 'Неправильный формат почты',
+        },
     },
     password: {
         type: String,
         required: true,
+        select: false,
     },
     name: {
         type: String,
@@ -26,22 +33,22 @@ const adminSchema = new mongoose.Schema({
     },
 })
 
-adminSchema.statics.findUserByCredentials = function(email, password){
-    return this.findOne({ email })
-      .then((user) => {
-        if (!user) {
-          return Promise.reject(new Error('Неправильные почта или пароль'));
-        }
-  
-        return bcrypt.compare(password, user.password)
-          .then((matched) => {
-            if (!matched) {
-              return Promise.reject(new Error('Неправильные почта или пароль'));
-            }
-  
-            return user;
-          });
-      });
-  };
+adminSchema.statics.findUserByCredentials = function Login(email, password) {
+  return this.findOne({ email }).select('+password')
+    .then((user) => {
+      if (!user) {
+        return Promise.reject(new AuthorizationRequired(WRONG_EMAIL_OR_PASSWORD));
+      }
+
+      return bcrypt.compare(password, user.password)
+        .then((matched) => {
+          if (!matched) {
+            return Promise.reject(new AuthorizationRequired(WRONG_EMAIL_OR_PASSWORD));
+          }
+
+          return user; // теперь user доступен
+        });
+    });
+};
 
 module.exports = mongoose.model('admins', adminSchema);
