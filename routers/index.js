@@ -1,7 +1,7 @@
 
 //Роуты
 const router = require('express').Router();
-const auth = require('../middlewares/auth')
+//const auth = require('../middlewares/auth')
 const routerAuth = require('./auth');
 const routeCategories = require('./categories');
 const getAdmin = require('./getAdmin');
@@ -20,7 +20,7 @@ router.use('/', routerAuth);
 router.use('/', getRouterCategories);
 router.use('/', getRouterPositions);
 router.use('/', getPromocode);
-router.use(auth);
+//router.use(auth);
 router.use('/', getAdmin);
 router.use('/', routeCategories);
 router.use('/', routerPosition);

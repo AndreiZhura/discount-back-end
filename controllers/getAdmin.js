@@ -27,14 +27,18 @@ module.exports.updateAdminMe = (req, res, next) => {
 };
 
 module.exports.getAdminMe = (req, res, next) => {
+console.log(req.admin)
   Admin.findById(req.user)
-    .then((user) => {
-      if (!user) {
-        throw new NotFoundError(THIS_USER_DOES_NOT_EXIST);
-      }
-      return res.status(200).send({ data: user });
-    })
-    .catch((err) => {
+
+  .then((user) => {
+    console.log(user)
+    if (!user) {
+      throw new NotFoundError(THIS_USER_DOES_NOT_EXIST);
+    }
+    return res.status(200).send({ data: user });
+  })
+  .catch((err) => {
+
       if (err.name === 'CastError') {
         next(new ErrorCode(DATA_PROCESSING_ERROR));
       } else {
