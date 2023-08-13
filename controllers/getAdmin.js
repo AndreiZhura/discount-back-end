@@ -4,7 +4,7 @@ const ErrorCode = require('../errors/ErrorCode');
 const Conflict = require('../errors/Conflict');
 const { THIS_USER_DOES_NOT_EXIST, DATA_PROCESSING_ERROR, THIS_USER_ALREADY_EXISTS } = require('../constants/constants');
 
-module.exports.updateUserMe = (req, res, next) => {
+module.exports.updateAdminMe = (req, res, next) => {
   const { email, name } = req.body;
   Admin
     .findByIdAndUpdate(
@@ -26,7 +26,7 @@ module.exports.updateUserMe = (req, res, next) => {
     });
 };
 
-module.exports.getUsersMe = (req, res, next) => {
+module.exports.getAdminMe = (req, res, next) => {
   Admin.findById(req.user)
     .then((user) => {
       if (!user) {

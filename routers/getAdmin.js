@@ -1,8 +1,8 @@
 const adminRouters = require('express').Router();
-const { updateUserMe, getUsersMe } = require('../controllers/getAdmin');
+const { updateAdminMe, getAdminMe } = require('../controllers/getAdmin');
 const { patchUserMe } = require('../validation/validationJoi');
 
-adminRouters.get('/admin/me', getUsersMe);
-adminRouters.patch('/admin/me', patchUserMe, updateUserMe);
+adminRouters.get('/admin/me', getAdminMe);
+adminRouters.patch('/admin/me', patchUserMe, updateAdminMe);
 
 module.exports = adminRouters;

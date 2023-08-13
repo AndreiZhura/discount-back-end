@@ -1,5 +1,5 @@
 const { PORT = 3000 } = process.env;
-const { DATABASE_ADRESS = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
+const { DATABASE_ADRESS = 'mongodb://localhost:27017/MyTestBackend' } = process.env;
 const THIS_USER_ALREADY_EXISTS = 'Такой пользователь уже существует!';
 const INCORRECT_DATA_ENTERED = 'Введены некоректные данные';
 const DATA_PROCESSING_ERROR = 'Ошибка обработки данных';
