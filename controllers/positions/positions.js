@@ -43,43 +43,41 @@ module.exports.updatePositionTextId = (req, res) => {
 
 module.exports.deletePosition = (req, res) => {
     Position.findByIdAndDelete(req.params._id)
-    .then((positions) => {
+        .then((positions) => {
 
-        if(positions.image && positions.barcode){
-            const filePathImage = positions.image.map((value)=>{
-                return  value
-            });
+            if (positions.image && positions.barcode) {
+                const filePathImage = positions.image.map((value) => {
+                    return value
+                });
 
-            fs.unlinkSync(`${filePathImage}`);
-            const filePathBarcode = positions.barcode.map((value)=>{
-                return  value
-            });
+                fs.unlinkSync(`${filePathImage}`);
+                const filePathBarcode = positions.barcode.map((value) => {
+                    return value
+                });
 
-            fs.unlinkSync(`${filePathBarcode}`);
-            res.status(200).send({ data: positions })
-        }
+                fs.unlinkSync(`${filePathBarcode}`);
+                res.status(200).send({ data: positions })
+            }
 
-        if(positions.image){
-            const filePathImage = positions.image.map((value)=>{
-                return  value
-            });
+            else if (positions.image) {
+                const filePathImage = positions.image.map((value) => {
+                    return value
+                });
 
-            fs.unlinkSync(`${filePathImage}`);
-            res.status(200).send({ data: positions })
-        }
-        if(positions.barcode){
+                fs.unlinkSync(`${filePathImage}`);
+                res.status(200).send({ data: positions })
+            }
+            else if (positions.barcode) {
 
-            const filePathBarcode = positions.barcode.map((value)=>{
-                return  value
-            });
+                const filePathBarcode = positions.barcode.map((value) => {
+                    return value
+                });
 
-            fs.unlinkSync(`${filePathBarcode}`);
-            res.status(200).send({ data: positions })
-        }
-        
-        else{
-            res.status(200).send({ data: positions })
-        }
+                fs.unlinkSync(`${filePathBarcode}`);
+                res.status(200).send({ data: positions })
+            }
+
+
         })
         .catch((error) => {
             res.status(400).send({ message: error });
