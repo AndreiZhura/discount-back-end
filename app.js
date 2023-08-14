@@ -7,6 +7,7 @@ const app = express();
 const router = require('./routers/index')
 
 
+
 const {PORT = 3001} = process.env;
 
 // подключаем базу данных
@@ -29,6 +30,7 @@ const options = {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads/',express.static(path.join(__dirname, './uploads/')));
+
 
 app.use(bodyParser.json());
 app.use(cors(options));

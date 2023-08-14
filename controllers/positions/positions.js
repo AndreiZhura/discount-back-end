@@ -1,7 +1,9 @@
 const Position = require('../../models/positions');
+var fs = require('fs');
+
 
 module.exports.createPositions = (req, res) => {
-    
+
     const image = req.files.image.map(value => { return value.path; })
     const barcode = req.files.barcode.map(value => { return value.path; })
 
@@ -22,17 +24,6 @@ module.exports.createPositions = (req, res) => {
         })
 };
 
-module.exports.deletePosition = (req, res) => {
-    Position.findByIdAndDelete(req.params._id)
-        .then((positions) => {
-            res.status(200).send({ data: positions })
-        })
-        .catch((error) => {
-            res.status(400).send({ message: error });
-        })
-};
-
-
 module.exports.updatePositionTextId = (req, res) => {
     Position.findByIdAndUpdate(req.params._id, {
         name: req.body.name,
@@ -47,6 +38,50 @@ module.exports.updatePositionTextId = (req, res) => {
             console.log(req.params._id)
             res.status(400).send({ message: error });
         })
-    }
+}
 
 
+module.exports.deletePosition = (req, res) => {
+    Position.findByIdAndDelete(req.params._id)
+    .then((positions) => {
+
+        if(positions.image && positions.barcode){
+            const filePathImage = positions.image.map((value)=>{
+                return  value
+            });
+
+            fs.unlinkSync(`${filePathImage}`);
+            const filePathBarcode = positions.barcode.map((value)=>{
+                return  value
+            });
+
+            fs.unlinkSync(`${filePathBarcode}`);
+            res.status(200).send({ data: positions })
+        }
+
+        if(positions.image){
+            const filePathImage = positions.image.map((value)=>{
+                return  value
+            });
+
+            fs.unlinkSync(`${filePathImage}`);
+            res.status(200).send({ data: positions })
+        }
+        if(positions.barcode){
+
+            const filePathBarcode = positions.barcode.map((value)=>{
+                return  value
+            });
+
+            fs.unlinkSync(`${filePathBarcode}`);
+            res.status(200).send({ data: positions })
+        }
+        
+        else{
+            res.status(200).send({ data: positions })
+        }
+        })
+        .catch((error) => {
+            res.status(400).send({ message: error });
+        })
+};
