@@ -20,6 +20,7 @@ mongoose.connect('mongodb://localhost:27017/MyTestBackend')
 const options = {
     origin: [
       'https://localhost:10888',
+      'http://andreizhura.nomoredomains.club/',
       'https://andreizhura.nomoredomains.club/'
     ],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
