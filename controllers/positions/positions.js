@@ -2,7 +2,7 @@ const Position = require('../../models/positions');
 var fs = require('fs');
 
 
-module.exports.createPositions = (req, res) => {
+module.exports.createPositionsBarcode = (req, res) => {
 
     const image = req.files.image.map(value => { return value.path; })
     const barcode = req.files.barcode.map(value => { return value.path; })
@@ -14,6 +14,27 @@ module.exports.createPositions = (req, res) => {
         description: req.body.description,
         link: req.body.link,
         barcode: req.files.barcode ? barcode : 'Такого файла нет',
+        category: req.body.category
+    })
+        .then((position) => {
+            res.status(201).send({ data: position })
+        })
+        .catch((error) => {
+            res.status(400).send({ message: error });
+        })
+};
+
+
+module.exports.createPositionsNoBarcode = (req, res) => {
+
+    const image = req.files.image.map(value => { return value.path; })
+
+
+    Position.create({
+        name: req.body.name,
+        image: req.files.image ? image : 'Такого файла нет',
+        description: req.body.description,
+        link: req.body.link,
         category: req.body.category
     })
         .then((position) => {

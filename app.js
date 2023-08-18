@@ -23,6 +23,8 @@ const options = {
     'https://andreizhura.nomoredomains.club',
     'http://andreizhura.nomoredomains.club',
     'https://10.200.61.46:10888',
+    'https://localhost:10888',
+    'http://localhost:3000/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
