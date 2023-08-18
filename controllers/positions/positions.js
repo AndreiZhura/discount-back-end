@@ -23,7 +23,7 @@ const NoBarcode = (req, res) => {
         image: req.files.image ? imageMap : 'Такого файла нет',
         description: req.body.description,
         link: req.body.link,
-        barcode: req.files.barcode === '' ? 'Такого файла нет' : 'Такого файла нет',
+        barcode: req.files.barcode === '' ? '' : null,
         category: req.body.category
     })
         .then((position) => {
@@ -73,14 +73,32 @@ module.exports.updatePositionTextId = (req, res) => {
         })
 }
 
+
 module.exports.deletePosition = (req, res) => {
     Position.findByIdAndDelete(req.params._id)
         .then((positions) => {
+            if (positions.barcode === null) {
+                const filePathImage = positions.image.map((value) => {
+                    return value
+                });
+                fs.unlinkSync(`${filePathImage}`);
+                res.status(200).send({ data: positions })
+            }
+            else{
+                const filePathImage = positions.image.map((value) => {
+                    return value
+                });
 
-            const positionsCheck = positions.barcode.map((value) => {
-                return value
-            })
-            console.log(positionsCheck)
+                fs.unlinkSync(`${filePathImage}`);
+                const filePathBarcode = positions.barcode.map((value) => {
+                    return value
+                });
+
+                fs.unlinkSync(`${filePathBarcode}`);
+                res.status(200).send({ data: positions })
+            }
+
+
 
 
         })
