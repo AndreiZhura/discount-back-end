@@ -2,37 +2,25 @@ const Position = require('../../models/positions');
 var fs = require('fs');
 
 
-module.exports.createPositionsBarcode = (req, res) => {
+module.exports.createPositions = (req, res) => {
+    const { name, image, description, link, barcode, category } = req.body
+    console.log(req.body)
+    if (barcode === '') {
+        NoBarcode(req, res)
+    }
+    else {
+        Barcode(req, res)
+    }
 
-    const image = req.files.image.map(value => { return value.path; })
-    const barcode = req.files.barcode.map(value => { return value.path; })
-
-
-    Position.create({
-        name: req.body.name,
-        image: req.files.image ? image : 'Такого файла нет',
-        description: req.body.description,
-        link: req.body.link,
-        barcode: req.files.barcode ? barcode : 'Такого файла нет',
-        category: req.body.category
-    })
-        .then((position) => {
-            res.status(201).send({ data: position })
-        })
-        .catch((error) => {
-            res.status(400).send({ message: error });
-        })
 };
 
+const NoBarcode = (req, res) => {
 
-module.exports.createPositionsNoBarcode = (req, res) => {
-
-    const image = req.files.image.map(value => { return value.path; })
-
+    const imageMap = req.files.image.map(value => { return value.path; })
 
     Position.create({
         name: req.body.name,
-        image: req.files.image ? image : 'Такого файла нет',
+        image: req.files.image ? imageMap : 'Такого файла нет',
         description: req.body.description,
         link: req.body.link,
         category: req.body.category
@@ -43,7 +31,29 @@ module.exports.createPositionsNoBarcode = (req, res) => {
         .catch((error) => {
             res.status(400).send({ message: error });
         })
-};
+}
+
+const Barcode = (req, res) => {
+    const imageMap = req.files.image.map(value => { return value.path; })
+    const barcodeMap = req.files.barcode.map(value => { return value.path; })
+    Position.create({
+        name: req.body.name,
+        image: req.files.image ? imageMap : 'Такого файла нет',
+        description: req.body.description,
+        link: req.body.link,
+        barcode: req.files.barcode ? barcodeMap : 'Такого файла нет',
+        category: req.body.category
+    })
+        .then((position) => {
+            res.status(201).send({ data: position })
+        })
+        .catch((error) => {
+            res.status(400).send({ message: error });
+        })
+}
+
+
+
 
 module.exports.updatePositionTextId = (req, res) => {
     Position.findByIdAndUpdate(req.params._id, {
