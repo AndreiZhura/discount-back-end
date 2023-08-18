@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 
 const promocode = new mongoose.Schema({
 
+    description: {
+        type: String,
+    },
     promocode: {
         type: String
     },
