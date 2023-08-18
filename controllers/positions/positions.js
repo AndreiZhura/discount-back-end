@@ -28,7 +28,7 @@ const NoBarcode = (req, res) => {
     })
         .then((position) => {
             res.status(201).send({ data: position })
-            console.log(position)
+          
         })
         .catch((error) => {
             res.status(400).send({ message: error });
@@ -68,7 +68,7 @@ module.exports.updatePositionTextId = (req, res) => {
             res.status(200).send({ data: positions })
         })
         .catch((error) => {
-            console.log(req.params._id)
+       
             res.status(400).send({ message: error });
         })
 }
@@ -84,7 +84,7 @@ module.exports.deletePosition = (req, res) => {
                 fs.unlinkSync(`${filePathImage}`);
                 res.status(200).send({ data: positions })
             }
-            else{
+            else {
                 const filePathImage = positions.image.map((value) => {
                     return value
                 });
