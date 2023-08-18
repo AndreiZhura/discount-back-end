@@ -1,10 +1,10 @@
+const { none } = require('../../middlewares/upload');
 const Position = require('../../models/positions');
 var fs = require('fs');
 
 
 module.exports.createPositions = (req, res) => {
     const { name, image, description, link, barcode, category } = req.body
-    console.log(req.body)
     if (barcode === '') {
         NoBarcode(req, res)
     }
@@ -23,10 +23,12 @@ const NoBarcode = (req, res) => {
         image: req.files.image ? imageMap : 'Такого файла нет',
         description: req.body.description,
         link: req.body.link,
+        barcode: req.files.barcode === '' ? 'Такого файла нет' : 'Такого файла нет',
         category: req.body.category
     })
         .then((position) => {
             res.status(201).send({ data: position })
+            console.log(position)
         })
         .catch((error) => {
             res.status(400).send({ message: error });
@@ -71,42 +73,14 @@ module.exports.updatePositionTextId = (req, res) => {
         })
 }
 
-
 module.exports.deletePosition = (req, res) => {
     Position.findByIdAndDelete(req.params._id)
         .then((positions) => {
 
-            if (positions.image && positions.barcode) {
-                const filePathImage = positions.image.map((value) => {
-                    return value
-                });
-
-                fs.unlinkSync(`${filePathImage}`);
-                const filePathBarcode = positions.barcode.map((value) => {
-                    return value
-                });
-
-                fs.unlinkSync(`${filePathBarcode}`);
-                res.status(200).send({ data: positions })
-            }
-
-            else if (positions.image) {
-                const filePathImage = positions.image.map((value) => {
-                    return value
-                });
-
-                fs.unlinkSync(`${filePathImage}`);
-                res.status(200).send({ data: positions })
-            }
-            else if (positions.barcode) {
-
-                const filePathBarcode = positions.barcode.map((value) => {
-                    return value
-                });
-
-                fs.unlinkSync(`${filePathBarcode}`);
-                res.status(200).send({ data: positions })
-            }
+            const positionsCheck = positions.barcode.map((value) => {
+                return value
+            })
+            console.log(positionsCheck)
 
 
         })
