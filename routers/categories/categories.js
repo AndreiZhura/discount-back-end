@@ -4,7 +4,7 @@ const {createCategories,  deleteCategoriesById,updateCategory} = require('../../
 
 
 routeCategories.post('/categories', createCategories);
-routeCategories.patch('/categories:_id',updateCategory);
+routeCategories.patch('/categories/:_id',updateCategory);
 routeCategories.delete('/categories/:_id',deleteCategoriesById)
 
 

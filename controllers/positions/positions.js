@@ -5,7 +5,7 @@ var fs = require('fs');
 
 module.exports.createPositions = (req, res) => {
     const { name, image, description, link, barcode, fullTerms, category } = req.body
-    console.log(req.body);
+
     if (barcode === '') {
         NoBarcode(req, res)
     }
@@ -29,8 +29,7 @@ const NoBarcode = (req, res) => {
         category: req.body.category
     })
         .then((position) => {
-            console.log('готовый')
-            console.log(position)
+     
             res.status(201).send({ data: position })
           
         })
@@ -52,8 +51,7 @@ const Barcode = (req, res) => {
         category: req.body.category
     })
         .then((position) => {
-            console.log('готовый')
-            console.log(position)
+        
             res.status(201).send({ data: position })
         })
         .catch((error) => {
@@ -69,6 +67,7 @@ module.exports.updatePositionTextId = (req, res) => {
         name: req.body.name,
         description: req.body.description,
         link: req.body.link,
+        fullTerms: req.body.fullTerms,
         category: req.body.category
     })
         .then((positions) => {

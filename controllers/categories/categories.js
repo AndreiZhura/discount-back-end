@@ -25,7 +25,10 @@ module.exports.deleteCategoriesById = (req, res) => {
 }
 
 module.exports.updateCategory = (req,res) =>{
-    Categories.findByIdAndUpdate(req.params._id, {...req.body})
+    Categories.findByIdAndUpdate(req.params._id, {
+        categories: req.body.categories
+    })
+
     .then((categories) => {
         res.status(200).send({ data: categories })
     })

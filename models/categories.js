@@ -4,7 +4,6 @@ const categories = new mongoose.Schema({
     categories:{
         type: String,
         minlength: 2,
-        maxlength: 20,
         required: true,
         unique: true,
     }
