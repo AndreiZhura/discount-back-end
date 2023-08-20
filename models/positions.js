@@ -19,7 +19,7 @@ const positions = new mongoose.Schema({
     barcode: {
         type: Array
     },
-    fullterms:{
+    fullTerms:{
         type: String,
     },
     category: {
