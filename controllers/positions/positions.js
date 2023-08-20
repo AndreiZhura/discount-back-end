@@ -24,6 +24,7 @@ const NoBarcode = (req, res) => {
         description: req.body.description,
         link: req.body.link,
         barcode: req.files.barcode === '' ? '' : null,
+        fullterms: req.body.fullterms,
         category: req.body.category
     })
         .then((position) => {
@@ -44,6 +45,7 @@ const Barcode = (req, res) => {
         description: req.body.description,
         link: req.body.link,
         barcode: req.files.barcode ? barcodeMap : 'Такого файла нет',
+        fullterms: req.body.fullterms,
         category: req.body.category
     })
         .then((position) => {
