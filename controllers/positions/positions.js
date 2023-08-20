@@ -4,7 +4,8 @@ var fs = require('fs');
 
 
 module.exports.createPositions = (req, res) => {
-    const { name, image, description, link, barcode, category } = req.body
+    const { name, image, description, link, barcode, fullTerms, category } = req.body
+    console.log(req.body);
     if (barcode === '') {
         NoBarcode(req, res)
     }
@@ -24,10 +25,12 @@ const NoBarcode = (req, res) => {
         description: req.body.description,
         link: req.body.link,
         barcode: req.files.barcode === '' ? '' : null,
-        fullterms: req.body.fullterms,
+        fullTerms: req.body.fullTerms,
         category: req.body.category
     })
         .then((position) => {
+            console.log('готовый')
+            console.log(position)
             res.status(201).send({ data: position })
           
         })
@@ -45,10 +48,12 @@ const Barcode = (req, res) => {
         description: req.body.description,
         link: req.body.link,
         barcode: req.files.barcode ? barcodeMap : 'Такого файла нет',
-        fullterms: req.body.fullterms,
+        fullTerms: req.body.fullTerms,
         category: req.body.category
     })
         .then((position) => {
+            console.log('готовый')
+            console.log(position)
             res.status(201).send({ data: position })
         })
         .catch((error) => {
